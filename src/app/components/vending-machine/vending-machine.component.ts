@@ -31,8 +31,11 @@ export class VendingMachineComponent implements OnInit {
   }
 
   onCashback(): void {
-    this.userCoinService.increaseCoin(this.sumOfCash);
-    this.sumOfCash = this.vmService.reduceCoins(this.sumOfCash);
+    const coins: Coin[] = this.vmService.reduceCoins(this.sumOfCash);
+    if (coins.length !== 0) {
+      this.userCoinService.increaseCoin(coins);
+      this.sumOfCash = this.vmService.getSumPayment();
+    }
   }
 
   onGetCoins(coin: Coin): void {
