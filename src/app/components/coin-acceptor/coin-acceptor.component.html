@@ -1,0 +1,5 @@
+<div class="acceptor">
+  <h3>Монетоприёмник</h3>
+  <p>Внесённая сумма: {{ receivedCash }}</p>
+  <button class="btn btn-success" [disabled]="receivedCash === 0" (click)="onCashback()">Сдача</button>
+</div>

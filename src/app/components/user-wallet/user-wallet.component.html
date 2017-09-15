@@ -1,0 +1,6 @@
+<div>
+  <h3>Кошелёк пользователя</h3>
+  <ul>
+    <app-coin *ngFor="let coin of coinInfo" [coinInfo]="coin" (selectEvent)="onSelectCoin($event)"></app-coin>
+  </ul>
+</div>

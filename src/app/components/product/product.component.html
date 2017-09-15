@@ -1,0 +1,6 @@
+<li class="product">
+  <span>{{ product.name }}</span>
+  <span>Стоимость: {{ product.price }} руб.</span>
+  <span>Порции: {{ product.total }} шт.</span>
+  <span><button class="btn btn-primary" [disabled]="product.total === 0" (click)="onBuy()">Купить</button></span>
+</li>

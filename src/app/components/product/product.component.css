@@ -1,0 +1,17 @@
+.product {
+    border: 1px solid #CFC6C6;
+    display: inline-block;
+    margin: 0 5px 5px 0;
+    padding: 5px;
+    width: 150px;
+}
+
+.product:hover {
+    box-shadow: 0 0 5px #9FA4B8;
+}
+
+span {
+    display: block;
+    margin: 5px 0;
+    text-align: center;
+}
