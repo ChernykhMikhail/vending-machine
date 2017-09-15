@@ -9,7 +9,6 @@ import { ProductService } from '../../service/ProductService';
   styleUrls: ['./product-list.component.css']
 })
 export class ProductListComponent implements OnInit {
-
   products: Product[];
   @Output() selectedProduct: EventEmitter<Product> = new EventEmitter<Product>();
 
@@ -20,7 +19,7 @@ export class ProductListComponent implements OnInit {
   }
 
   onBuyEvent(product: Product): void {
-    this.selectedProduct.emit(product)
+    this.selectedProduct.emit(product);
     // this.productService.removeProduct(product)
     //         .then( (prod) => this.selectedProduct.emit(prod) )
     //         .catch( (reason) => console.error(reason) );

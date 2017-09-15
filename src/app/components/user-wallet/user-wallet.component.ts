@@ -14,14 +14,14 @@ export class UserWalletComponent implements OnInit {
   coinInfo: CoinInfo[];
   @Output() selectedCoin: EventEmitter<Coin> = new EventEmitter<Coin>();
 
-  constructor(private userCoinService: UserCoinService){
+  constructor(private userCoinService: UserCoinService) {
   }
 
   ngOnInit() {
     this.coinInfo = this.userCoinService.getCoinInfo();
   }
 
-  onSelectCoin(selectedCoin: CoinInfo): void{
+  onSelectCoin(selectedCoin: CoinInfo): void {
     this.userCoinService.reduceCoin(selectedCoin)
           .then( (coin) => this.selectedCoin.emit(coin) )
           .catch( (reason) => console.error(reason) );

@@ -15,11 +15,11 @@ import { VendingMachineService } from '../../service/VendingMachineService';
 export class VendingMachineComponent implements OnInit {
 
   machineCoins: CoinInfo[];
-  sumOfCash: number = 0;
-  showSuccessMessage: boolean = false;
-  showFailMessage: boolean = false;
-  successMessage: string = 'Спасибо!';
-  failMessage: string = 'Недостаточно средств';
+  sumOfCash = 0;
+  showSuccessMessage = false;
+  showFailMessage = false;
+  successMessage = 'Спасибо!';
+  failMessage = 'Недостаточно средств';
 
   constructor( private productService: ProductService,
                private vmService: VendingMachineService,
@@ -30,7 +30,7 @@ export class VendingMachineComponent implements OnInit {
     this.sumOfCash = this.vmService.getSumPayment();
   }
 
-  onCashback(): void{
+  onCashback(): void {
     this.userCoinService.increaseCoin(this.sumOfCash);
     this.sumOfCash = this.vmService.reduceCoins(this.sumOfCash);
   }
@@ -41,7 +41,7 @@ export class VendingMachineComponent implements OnInit {
   }
 
   onBuyProduct(product: Product): void {
-    let success = this.vmService.tryPurchase(product);
+    const success = this.vmService.tryPurchase(product);
     if (success) {
       this.productService.removeProduct(product);
       this.sumOfCash = this.vmService.getSumPayment();

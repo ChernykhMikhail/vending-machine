@@ -7,7 +7,6 @@ import { DignityOfCoin } from '../service/DignityOfCoin';
 
 @Injectable()
 export class VendingMachineService {
-
     machineCoins: CoinInfo[] = [
         { coin: { value: DignityOfCoin.ONE }, balance: 100 },
         { coin: { value: DignityOfCoin.TWO }, balance: 100 },
@@ -15,15 +14,14 @@ export class VendingMachineService {
         { coin: { value: DignityOfCoin.TEN }, balance: 100 }
     ];
 
-    sizeOfPayment: number = 0;
+    sizeOfPayment = 0;
 
-    constructor(){}
+    constructor() {}
 
     tryPurchase(product: Product): boolean {
-        if (this.sizeOfPayment < product.price){
+        if (this.sizeOfPayment < product.price) {
             return false;
         }
-        
         this.sizeOfPayment -= product.price;
         return true;
     }
@@ -41,30 +39,30 @@ export class VendingMachineService {
         this.sizeOfPayment += coin.value;
     }
 
-    reduceCoins(sum: number): number{
+    reduceCoins(sum: number): number {
         while (sum > 0) {
             if (sum - DignityOfCoin.TEN >= 0) {
 
                 this.machineCoins[3].balance--;
-                sum-= DignityOfCoin.TEN;
+                sum -= DignityOfCoin.TEN;
                 this.sizeOfPayment -= DignityOfCoin.TEN;
 
             } else if (sum - DignityOfCoin.FIVE >= 0) {
 
                 this.machineCoins[2].balance--;
-                sum-=DignityOfCoin.FIVE;
+                sum -= DignityOfCoin.FIVE;
                 this.sizeOfPayment -= DignityOfCoin.FIVE;
 
             } else if (sum - DignityOfCoin.TWO >= 0) {
 
                 this.machineCoins[1].balance--;
-                sum-=DignityOfCoin.TWO;
+                sum -= DignityOfCoin.TWO;
                 this.sizeOfPayment -= DignityOfCoin.TWO;
 
             } else {
 
                 this.machineCoins[0].balance--;
-                sum-=DignityOfCoin.ONE;
+                sum -= DignityOfCoin.ONE;
                 this.sizeOfPayment -= DignityOfCoin.ONE;
 
             }
@@ -72,7 +70,7 @@ export class VendingMachineService {
         return this.sizeOfPayment;
     }
 
-    getCoinInfo(): CoinInfo[]{
+    getCoinInfo(): CoinInfo[] {
         return this.machineCoins;
     }
 

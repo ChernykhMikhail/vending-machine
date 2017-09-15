@@ -11,14 +11,14 @@ export class ProductService {
         { name: 'Сок', price: 15, total: 20 }
     ];
 
-    constructor(){}
+    constructor() {}
 
     getProducts(): Product[] {
         return this.products;
     }
 
     removeProduct(product: Product): Promise<Product> {
-        let index = this.products.indexOf(product);
+        const index = this.products.indexOf(product);
         if (this.products[index].total > 0) {
             this.products[index].total--;
             return Promise.resolve<Product>(product);

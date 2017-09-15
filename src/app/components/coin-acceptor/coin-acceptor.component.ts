@@ -9,7 +9,7 @@ import { Coin } from '../../model/Coin';
 })
 export class CoinAcceptorComponent implements OnInit {
 
-  @Input() receivedCash: number = 0;
+  @Input() receivedCash = 0;
   @Output() cashbackEvent = new EventEmitter();
 
   constructor() {
