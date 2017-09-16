@@ -9,7 +9,7 @@ import { MessageBoxService } from '../../service/message-box.service';
   styleUrls: ['./message-box.component.css']
 })
 export class MessageBoxComponent implements OnInit {
-  message: string = 'Default message text';
+  message = 'Default message text';
   messages: string[];
   isShowMessage = false;
   code: MessageCode;

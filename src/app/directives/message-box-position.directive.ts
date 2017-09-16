@@ -1,7 +1,7 @@
 import { Directive, ElementRef, AfterViewInit } from '@angular/core';
 
 @Directive({
-  selector: '[messageBoxPosition]'
+  selector: '[appMessageBoxPositionDirective]'
 })
 export class MessageBoxPositionDirective implements AfterViewInit {
 
@@ -10,8 +10,8 @@ export class MessageBoxPositionDirective implements AfterViewInit {
 
   ngAfterViewInit() {
     const style = getComputedStyle(this.el.nativeElement, null);
-    const h:any = style.height.substring(0, style.height.indexOf('px'));
-    const w:any = style.width.substring(0, style.width.indexOf('px'));
-    this.el.nativeElement.style.margin = `${ -h/2 }px 0 0 ${ -w/2 }px`;
+    const h: any = style.height.substring(0, style.height.indexOf('px'));
+    const w: any = style.width.substring(0, style.width.indexOf('px'));
+    this.el.nativeElement.style.margin = `${ -h / 2 }px 0 0 ${ -w / 2 }px`;
   }
 }
