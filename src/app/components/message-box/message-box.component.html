@@ -1,0 +1,7 @@
+<div *ngIf="isShowMessage">
+  <ul [ngSwitch]="code">
+    <li *ngSwitchCase="0" class="alert alert-success" messageBoxPosition>{{ message }}</li>
+    <li *ngSwitchCase="1" class="alert alert-info" messageBoxPosition>{{ message }}</li>
+    <li *ngSwitchCase="2" class="alert alert-danger" messageBoxPosition>{{ message }}</li>
+  </ul>
+</div>

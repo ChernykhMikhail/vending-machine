@@ -8,10 +8,7 @@
     <app-user-wallet (selectedCoin)="onGetCoins($event)"></app-user-wallet>
   </div>
   <div class="col-md-6">
-    <div class="message-box">
-      <div *ngIf="showSuccessMessage" class="alert alert-success message" role="alert">{{ successMessage }}</div>
-      <div *ngIf="showFailMessage" class="alert alert-danger message" role="alert">{{ failMessage }}</div>
-    </div>
     <app-product-list (selectedProduct)="onBuyProduct($event)"></app-product-list>
   </div>
 </div>
+<app-message-box></app-message-box>

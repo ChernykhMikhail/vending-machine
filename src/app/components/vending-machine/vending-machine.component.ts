@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
 import { Coin } from '../../model/Coin';
 import { CoinInfo } from '../../model/CoinInfo';
@@ -6,6 +6,8 @@ import { Product } from '../../model/Product';
 import { ProductService } from '../../service/ProductService';
 import { UserCoinService } from '../../service/UserCoinService';
 import { VendingMachineService } from '../../service/VendingMachineService';
+import { MessageCode } from '../../service/MessageCode';
+import { MessageBoxComponent } from '../message-box/message-box.component';
 
 @Component({
   selector: 'app-vending-machine',
@@ -16,10 +18,7 @@ export class VendingMachineComponent implements OnInit {
 
   machineCoins: CoinInfo[];
   sumOfCash = 0;
-  showSuccessMessage = false;
-  showFailMessage = false;
-  successMessage = 'Спасибо!';
-  failMessage = 'Недостаточно средств';
+  @ViewChild(MessageBoxComponent) messageBox: MessageBoxComponent;
 
   constructor( private productService: ProductService,
                private vmService: VendingMachineService,
@@ -35,6 +34,8 @@ export class VendingMachineComponent implements OnInit {
     if (coins.length !== 0) {
       this.userCoinService.increaseCoin(coins);
       this.sumOfCash = this.vmService.getSumPayment();
+    } else {
+      this.messageBox.showMessageBox(MessageCode.ERROR);
     }
   }
 
@@ -48,11 +49,9 @@ export class VendingMachineComponent implements OnInit {
     if (success) {
       this.productService.removeProduct(product);
       this.sumOfCash = this.vmService.getSumPayment();
-      this.showSuccessMessage = true;
-      setTimeout( () => this.showSuccessMessage = false, 2000);
+      this.messageBox.showMessageBox(MessageCode.SUCCESS);
     } else {
-      this.showFailMessage = true;
-      setTimeout( () => this.showFailMessage = false, 2000);
+      this.messageBox.showMessageBox(MessageCode.FAIL);
     }
   }
 }

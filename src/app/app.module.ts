@@ -10,8 +10,11 @@ import { ProductComponent } from './components/product/product.component';
 
 import { UserCoinService } from './service/UserCoinService';
 import { ProductService } from './service/ProductService';
+import { MessageBoxService } from './service/message-box.service';
 import { VendingMachineService } from './service/VendingMachineService';
 import { CoinComponent } from './components/coin/coin.component';
+import { MessageBoxComponent } from './components/message-box/message-box.component';
+import { MessageBoxPositionDirective } from './directives/message-box-position.directive';
 
 @NgModule({
   declarations: [
@@ -21,12 +24,14 @@ import { CoinComponent } from './components/coin/coin.component';
     UserWalletComponent,
     CoinAcceptorComponent,
     ProductComponent,
-    CoinComponent
+    CoinComponent,
+    MessageBoxComponent,
+    MessageBoxPositionDirective
   ],
   imports: [
     BrowserModule
   ],
-  providers: [ UserCoinService, ProductService, VendingMachineService ],
+  providers: [ UserCoinService, ProductService, VendingMachineService, MessageBoxService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
