@@ -1,8 +1,11 @@
-ul li {
+ul {
     display: block;
     left: 50%;
-    max-width: 350px;
     padding: 10px;
     position: fixed;
-    top: 150px;
+    top: 120px;
+}
+
+ul li {
+    list-style: none;
 }
