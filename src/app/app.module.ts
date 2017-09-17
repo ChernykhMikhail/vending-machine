@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { VendingMachineComponent } from './components/vending-machine/vending-machine.component';
@@ -29,7 +30,7 @@ import { MessageBoxPositionDirective } from './directives/message-box-position.d
     MessageBoxPositionDirective
   ],
   imports: [
-    BrowserModule
+    BrowserModule, FormsModule
   ],
   providers: [ UserCoinService, ProductService, VendingMachineService, MessageBoxService ],
   bootstrap: [AppComponent]

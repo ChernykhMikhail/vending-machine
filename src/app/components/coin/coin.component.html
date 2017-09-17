@@ -2,5 +2,9 @@
   <span class="coin" (click)="onSelect()">
     <span class="coin-value">{{ coinInfo.coin.value }}</span>
   </span>
-  <span class="balance">{{ coinInfo.balance }}</span>
+  <input (blur)="onBlur($event)"
+         (keydown)="onKeydown($event)" 
+         [disabled]="!debug" 
+         [class.non-editable]="!debug" 
+         [(ngModel)]="coinInfo.balance" type="text" class="balance">
 </li>

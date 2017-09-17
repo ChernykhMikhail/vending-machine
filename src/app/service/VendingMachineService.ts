@@ -8,9 +8,9 @@ import { DignityOfCoin } from '../service/DignityOfCoin';
 @Injectable()
 export class VendingMachineService {
     machineCoins: CoinInfo[] = [
-        { coin: { value: DignityOfCoin.ONE }, balance: 0 },
+        { coin: { value: DignityOfCoin.ONE }, balance: 100 },
         { coin: { value: DignityOfCoin.TWO }, balance: 100 },
-        { coin: { value: DignityOfCoin.FIVE }, balance: 0 },
+        { coin: { value: DignityOfCoin.FIVE }, balance: 100 },
         { coin: { value: DignityOfCoin.TEN }, balance: 100 }
     ];
 

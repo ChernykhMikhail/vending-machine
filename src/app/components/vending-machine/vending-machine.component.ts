@@ -18,6 +18,7 @@ export class VendingMachineComponent implements OnInit {
 
   machineCoins: CoinInfo[];
   sumOfCash = 0;
+  isDebug = false;
   @ViewChild(MessageBoxComponent) messageBox: MessageBoxComponent;
 
   constructor( private productService: ProductService,
@@ -37,6 +38,10 @@ export class VendingMachineComponent implements OnInit {
     } else {
       this.messageBox.showMessageBox(MessageCode.ERROR);
     }
+  }
+
+  onDebug(): void {
+    this.isDebug = !this.isDebug;
   }
 
   onGetCoins(coin: Coin): void {
