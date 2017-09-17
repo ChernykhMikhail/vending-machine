@@ -2,10 +2,10 @@
   <div class="col-md-6">
     <div class="cashbox">
       <h3>Кошелёк машины</h3>
-      <app-coin [debug]="isDebug" *ngFor="let coinInfo of machineCoins" [coinInfo]="coinInfo"></app-coin>
+      <app-coin [debug]="isCoinsEditable" *ngFor="let coinInfo of machineCoins" [coinInfo]="coinInfo"></app-coin>
       <div>
-        <input (change)="onDebug()" type="checkbox" name="debug" id="change-coin-count">
-        <label for="change-coin-count">Изменить количество монет</label>
+        <input (change)="setCoinsEditable()" type="checkbox" name="coins-editable" id="coins-editable">
+        <label for="coins-editable">Изменить количество монет</label>
       </div>
     </div>
     <app-coin-acceptor [receivedCash]="sumOfCash" (cashbackEvent)="onCashback()"></app-coin-acceptor>

@@ -18,7 +18,7 @@ export class VendingMachineComponent implements OnInit {
 
   machineCoins: CoinInfo[];
   sumOfCash = 0;
-  isDebug = false;
+  isCoinsEditable = false;
   @ViewChild(MessageBoxComponent) messageBox: MessageBoxComponent;
 
   constructor( private productService: ProductService,
@@ -40,8 +40,8 @@ export class VendingMachineComponent implements OnInit {
     }
   }
 
-  onDebug(): void {
-    this.isDebug = !this.isDebug;
+  setCoinsEditable(): void {
+    this.isCoinsEditable = !this.isCoinsEditable;
   }
 
   onGetCoins(coin: Coin): void {
