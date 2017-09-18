@@ -42,52 +42,48 @@ export class VendingMachineService {
     reduceCoins(sum: number): Coin[] {
         const tempSum = sum;
         const tempCoins: Coin[] = [];
-        while (sum > 0) {
-            if (sum - DignityOfCoin.TEN >= 0 && this.machineCoins[3].balance > 0) {
+        const tempSizeOfPayment = this.sizeOfPayment;
+        let coinBalance = this.machineCoins.map(el => el.balance);
 
-                this.machineCoins[3].balance--;
-                sum -= DignityOfCoin.TEN;
-                this.sizeOfPayment -= DignityOfCoin.TEN;
-                tempCoins.push(this.machineCoins[3].coin);
+        const coinDignity = [1, 2, 5, 10];
+        for (let j = coinDignity.length; j >= 0; j--) {
+            let i = j;
+            while (sum > 0 && i >= 0) {
+                if (sum - coinDignity[i] >= 0 && coinBalance[i] > 0) {
+                    sum -= coinDignity[i];
+                    coinBalance[i]--;
+                    tempCoins.push(this.machineCoins[i].coin);
+                    this.sizeOfPayment -= coinDignity[i];
+                } else i--;
+            }
+            if (sum != 0 && j != 0) {
+                sum = tempSum;
+                coinBalance = this.machineCoins.map(el => el.balance);
+                tempCoins.splice(0);
+                this.sizeOfPayment = tempSizeOfPayment;
+            }
+        }
 
-            } else if (sum - DignityOfCoin.FIVE >= 0 && this.machineCoins[2].balance > 0) {
-
-                this.machineCoins[2].balance--;
-                sum -= DignityOfCoin.FIVE;
-                this.sizeOfPayment -= DignityOfCoin.FIVE;
-                tempCoins.push(this.machineCoins[2].coin);
-
-            } else if (sum - DignityOfCoin.TWO >= 0 && this.machineCoins[1].balance > 0) {
-
-                this.machineCoins[1].balance--;
-                sum -= DignityOfCoin.TWO;
-                this.sizeOfPayment -= DignityOfCoin.TWO;
-                tempCoins.push(this.machineCoins[1].coin);
-
-            } else if (sum - DignityOfCoin.ONE >= 0 && this.machineCoins[0].balance > 0) {
-
-                this.machineCoins[0].balance--;
-                sum -= DignityOfCoin.ONE;
-                this.sizeOfPayment -= DignityOfCoin.ONE;
-                tempCoins.push(this.machineCoins[0].coin);
-
-            } else {
-                console.log(`Извините, в кассе недостаточно монет для выдачи суммы: ${ tempSum } в полном объёме`);
-                this.sizeOfPayment = tempSum;
-                while (tempCoins.length > 0) {
-                    const coin = tempCoins.shift();
-                    if (coin.value === DignityOfCoin.ONE) {
+        if (sum != 0) {
+            console.log(`Извините, в кассе недостаточно монет для выдачи суммы: ${ tempSum } в полном объёме`);
+            tempCoins.forEach(
+                (el) => {
+                    if (el.value === DignityOfCoin.ONE) {
                         this.machineCoins[0].balance++;
-                    } else if (coin.value === DignityOfCoin.TWO) {
+                    } else if (el.value === DignityOfCoin.TWO) {
                         this.machineCoins[1].balance++;
-                    } else if (coin.value === DignityOfCoin.FIVE) {
+                    } else if (el.value === DignityOfCoin.FIVE) {
                         this.machineCoins[2].balance++;
                     } else {
                         this.machineCoins[3].balance++;
                     }
                 }
-                break;
-            }
+            );
+            tempCoins.splice(0);
+        } else {
+            coinBalance.forEach( (el, index) => {
+                this.machineCoins[index].balance = el;
+            });
         }
         return tempCoins;
     }
