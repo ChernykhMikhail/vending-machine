@@ -27,15 +27,7 @@ export class VendingMachineService {
     }
 
     increaseCoins(coin: Coin): void {
-        if (coin.value === DignityOfCoin.ONE) {
-            this.machineCoins[0].balance++;
-        } else if (coin.value === DignityOfCoin.TWO) {
-            this.machineCoins[1].balance++;
-        } else if (coin.value === DignityOfCoin.FIVE) {
-            this.machineCoins[2].balance++;
-        } else {
-            this.machineCoins[3].balance++;
-        }
+        this.machineCoins.find( (el) => el.coin.value === coin.value ).balance++;
         this.sizeOfPayment += coin.value;
     }
 
