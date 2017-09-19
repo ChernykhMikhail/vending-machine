@@ -36,6 +36,7 @@ export class VendingMachineComponent implements OnInit {
       this.userCoinService.increaseCoin(coins);
       this.sumOfCash = this.vmService.getSumPayment();
     } else {
+      console.error("dfged");
       this.messageBox.showMessageBox(MessageCode.ERROR);
     }
   }

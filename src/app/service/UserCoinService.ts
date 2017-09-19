@@ -33,31 +33,8 @@ export class UserCoinService implements OnInit {
     }
 
     increaseCoin(coins: Coin[]): void {
-        // while (sum > 0) {
-        //     if (sum - 10 >= 0) {
-        //         this.coinInfo[3].balance++;
-        //         sum -= 10;
-        //     } else if (sum - 5 >= 0) {
-        //         this.coinInfo[2].balance++;
-        //         sum -= 5;
-        //     } else if (sum - 2 >= 0) {
-        //         this.coinInfo[1].balance++;
-        //         sum -= 2;
-        //     } else {
-        //         this.coinInfo[0].balance++;
-        //         sum -= 1;
-        //     }
-        // }
         for (const coin of coins) {
-            if (coin.value === DignityOfCoin.TEN) {
-                this.coinInfo[3].balance++;
-            } else if (coin.value === DignityOfCoin.FIVE) {
-                this.coinInfo[2].balance++;
-            } else if (coin.value === DignityOfCoin.TWO) {
-                this.coinInfo[1].balance++;
-            } else {
-                this.coinInfo[0].balance++;
-            }
+            this.coinInfo.find( (el) => el.coin.value === coin.value ).balance++;
         }
     }
 }
