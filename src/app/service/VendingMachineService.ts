@@ -50,7 +50,7 @@ export class VendingMachineService {
                 sum = this.sizeOfPayment;
                 coinBalance = this.machineCoins.map(el => el.balance);
                 tempCoins = [];
-            } /*else break;*/
+            } else break;
         }
 
         if (sum != 0) {

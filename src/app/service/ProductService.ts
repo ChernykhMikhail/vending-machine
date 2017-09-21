@@ -1,29 +1,27 @@
 import { Injectable } from '@angular/core';
+import { Headers, Http } from '@angular/http';
 
 import { Product } from '../model/Product';
 
+import 'rxjs/add/operator/toPromise';
+
 @Injectable()
 export class ProductService {
-    products: Product[] = [
-        { name: 'Чай', price: 13, total: 20 },
-        { name: 'Кофе', price: 18, total: 20 },
-        { name: 'Кофе с молоком', price: 21, total: 20 },
-        { name: 'Сок', price: 15, total: 20 }
-    ];
 
-    constructor() {}
-
-    getProducts(): Product[] {
-        return this.products;
+    constructor(private http: Http) {}
+    private headers: Headers = new Headers({'Content-Type':'application/json'});
+    getProducts(): Promise<Product[]> {
+        const url = 'http://localhost:8080/api/product';
+        return this.http.get(url, {headers: this.headers})
+            .toPromise()
+            .then(response => response.json() as Product[]) // NO .data !!!
+            .catch( error => Promise.reject(error) );
     }
 
-    removeProduct(product: Product): Promise<Product> {
-        const index = this.products.indexOf(product);
-        if (this.products[index].total > 0) {
-            this.products[index].total--;
-            return Promise.resolve<Product>(product);
-        } else {
-            return Promise.reject(`No such product: ${ product.name }`);
-        }
+    removeProduct(product: Product): Promise<void> {
+        const url = `http://localhost:8080/api/product/${ product.id }`;
+        return this.http.delete(url, {headers: this.headers}).toPromise()
+            .then( () => { product.quantity--; Promise.resolve(null) })
+            .catch ( error => Promise.reject(`No such product: ${ product.name }`));
     }
 }

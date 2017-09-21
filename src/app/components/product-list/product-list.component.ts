@@ -15,13 +15,12 @@ export class ProductListComponent implements OnInit {
   constructor(private productService: ProductService) { }
 
   ngOnInit() {
-    this.products = this.productService.getProducts();
+    this.productService.getProducts()
+      .then( products => this.products = products )
+      .catch( message => console.error(message) );
   }
 
   onBuyEvent(product: Product): void {
     this.selectedProduct.emit(product);
-    // this.productService.removeProduct(product)
-    //         .then( (prod) => this.selectedProduct.emit(prod) )
-    //         .catch( (reason) => console.error(reason) );
   }
 }
